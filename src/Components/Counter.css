@@ -1,0 +1,28 @@
+.Counter {
+    text-align: center;
+    border: 1px solid #4f58fb;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    max-width: 100%;
+    color: black;
+    background-color: aquamarine;
+    box-shadow: 5px 5px 5px black;
+    border-radius:  10px; 
+  }
+
+.buttons {
+  background-color: rgb(127, 185, 255);
+  border: none;
+  flex-wrap: 5px;
+  text-align: center;
+  box-shadow: 1px 1px 1px rgb(151, 150, 150);
+  padding: 10px; 
+}
+
+.Counter-header{
+  text-decoration-color: black;
+  text-decoration:underline;
+  font-size: medium;
+  font-style: normal;
+}

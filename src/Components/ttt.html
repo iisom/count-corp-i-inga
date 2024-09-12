@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <title>Custom Carousel Example</title>
+  <style>
+    .carousel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .carousel-item {
+      flex: 0 0 100%;
+      margin-right: 0;
+    }
+    .carousel-item img {
+      width: 100%;
+      display: block;
+    }
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .carousel-control:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+    .carousel-control-prev {
+      left: 10px;
+    }
+    .carousel-control-next {
+      right: 10px;
+    }
+    .dark-mode .carousel-control {
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .dark-mode .carousel-control:hover {
+      background: rgba(255, 255, 255, 0.7);
+    }
+    .dark-mode body {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    .search-container {
+      margin-top: 20px;
+    }
+    .search-container input {
+      width: calc(100% - 40px);
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .search-container button {
+      width: 30px;
+      height: 30px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-4">
+  <button id="theme-toggle" class="btn btn-primary mb-3">Toggle Dark Mode</button>
+  <div id="carouselExampleAutoplaying" class="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://via.placeholder.com/800x400?text=Slide+1" alt="Slide 1">
+      </div>
+      <div class="carousel-item">
+        <img src="https://via.placeholder.com/800x400?text=Slide+2" alt="Slide 2">
+      </div>
+      <div class="carousel-item">
+        <img src="https://via.placeholder.com/800x400?text=Slide+3" alt="Slide 3">
+      </div>
+    </div>
+    <button class="carousel-control carousel-control-prev" onclick="prevSlide()">&#10094;</button>
+    <button class="carousel-control carousel-control-next" onclick="nextSlide()">&#10095;</button>
+  </div>
+  <div class="search-container">
+    <input type="text" placeholder="Search...">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </div>
+</div>
+
+<script>
+  let slideIndex = 0;
+
+  function showSlide() {
+    const slides = document.querySelectorAll('.carousel-item');
+    if (slideIndex >= slides.length) slideIndex = 0;
+    if (slideIndex < 0) slideIndex = slides.length - 1;
+    slides.forEach((slide) => {
+      slide.style.transform = `translateX(${-slideIndex * 100}%)`;
+    });
+  }
+
+  function nextSlide() {
+    slideIndex++;
+    showSlide();
+  }
+
+  function prevSlide() {
+    slideIndex--;
+    showSlide();
+  }
+
+  // Autoplay
+  setInterval(nextSlide, 2000);
+
+  // Dark mode toggle
+  const toggleButton = document.getElementById('theme-toggle');
+  toggleButton.addEventListener('click', () => {
+    const isDarkMode = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+    document.documentElement.setAttribute('data-bs-theme', isDarkMode ? 'light' : 'dark');
+    document.body.classList.toggle('dark-mode', !isDarkMode);
+  });
+</script>
+
+</body>
+</html>
